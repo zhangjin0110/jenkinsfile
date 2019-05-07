@@ -1,21 +1,85 @@
+Java
+Jenkinsfile (Declarative Pipeline)
 pipeline {
-    agent any
-
+    agent { docker 'maven:3.3.3' }
     stages {
-        stage('Build') {
+        stage('build') {
             steps {
-                echo 'Building..'
+                sh 'mvn --version'
             }
         }
-        stage('Test') {
+    }
+}
+Toggle Scripted Pipeline (Advanced)
+Node.js / JavaScript
+Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent { docker 'node:6.3' }
+    stages {
+        stage('build') {
             steps {
-                echo 'Testing..'
+                sh 'npm --version'
             }
         }
-        stage('Deploy') {
+    }
+}
+Toggle Scripted Pipeline (Advanced)
+Ruby
+Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent { docker 'ruby' }
+    stages {
+        stage('build') {
             steps {
-                echo 'Deploying....'
+                sh 'ruby --version'
             }
+        }
+    }
+}
+Toggle Scripted Pipeline (Advanced)
+Python
+Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent { docker 'python:3.5.1' }
+    stages {
+        stage('build') {
+            steps {
+                sh 'python --version'
+            }
+        }
+    }
+}
+Toggle Scripted Pipeline (Advanced)
+Jenkinsfile (Scripted Pipeline)
+/* 需要Docker Pipeline插件 */
+node('docker') {
+    checkout scm
+    stage('Build') {
+        docker.image('python:3.5.1').inside {
+            sh 'python --version'
+        }
+    }
+}
+PHP
+Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent { docker 'php' }
+    stages {
+        stage('build') {
+            steps {
+                sh 'php --version'
+            }
+        }
+    }
+}
+Toggle Scripted Pipeline (Advanced)
+Jenkinsfile (Scripted Pipeline)
+/* 需要 Docker Pipeline 插件 */
+node('docker') {
+    checkout scm
+    stage('Build') {
+        docker.image('php').inside {
+            sh 'php --version'
         }
     }
 }
