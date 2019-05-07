@@ -1,63 +1,14 @@
-Java
 Jenkinsfile (Declarative Pipeline)
 pipeline {
-    agent { docker 'maven:3.3.3' }
+    agent any
     stages {
-        stage('build') {
+        stage('Build') {
             steps {
-                sh 'mvn --version'
-            }
-        }
-    }
-}
-Toggle Scripted Pipeline (Advanced)
-Node.js / JavaScript
-Jenkinsfile (Declarative Pipeline)
-pipeline {
-    agent { docker 'node:6.3' }
-    stages {
-        stage('build') {
-            steps {
-                sh 'npm --version'
-            }
-        }
-    }
-}
-Toggle Scripted Pipeline (Advanced)
-Ruby
-Jenkinsfile (Declarative Pipeline)
-pipeline {
-    agent { docker 'ruby' }
-    stages {
-        stage('build') {
-            steps {
-                sh 'ruby --version'
-            }
-        }
-    }
-}
-Toggle Scripted Pipeline (Advanced)
-Python
-Jenkinsfile (Declarative Pipeline)
-pipeline {
-    agent { docker 'python:3.5.1' }
-    stages {
-        stage('build') {
-            steps {
-                sh 'python --version'
-            }
-        }
-    }
-}
-Toggle Scripted Pipeline (Advanced)
-PHP
-Jenkinsfile (Declarative Pipeline)
-pipeline {
-    agent { docker 'php' }
-    stages {
-        stage('build') {
-            steps {
-                sh 'php --version'
+                sh 'echo "Hello World"'
+                sh '''
+                    echo "Multiline shell steps works too"
+                    ls -lah
+                '''
             }
         }
     }
